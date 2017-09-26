@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mosogepsch_app',
     'rest_framework',
+    'django_celery_results',
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
