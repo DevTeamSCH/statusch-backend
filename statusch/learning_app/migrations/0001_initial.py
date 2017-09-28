@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255)),
                 ('status', models.BooleanField()),
-                ('floor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='learing_rooms', to='tanulosch_app.Floor')),
+                ('floor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='learing_rooms', to='learning_app.Floor')),
             ],
         ),
     ]

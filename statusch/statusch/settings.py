@@ -37,11 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mosogepsch_app',
+    'washing_app',
+    'learning_app',
     'rest_framework',
     'django_celery_results',
     'django_celery_beat',
-    'tanulosch_app',
 ]
 
 MIDDLEWARE = [

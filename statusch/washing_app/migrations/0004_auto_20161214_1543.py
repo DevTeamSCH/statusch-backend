@@ -8,7 +8,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mosogepsch_app', '0003_remove_floor_alias'),
+        ('washing_app', '0003_remove_floor_alias'),
     ]
 
     operations = [

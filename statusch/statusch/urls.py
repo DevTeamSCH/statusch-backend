@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from .api_urls import api_router_mosogepsch, api_router_tanulosch
+from .api_urls import api_router_washing, api_router_learning
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^mosogepsch_api/', include(api_router_mosogepsch.urls)),
-    url(r'^tanulosch_api/', include(api_router_tanulosch.urls)),
+    url(r'^washing_api/', include(api_router_washing.urls)),
+    url(r'^learning_api/', include(api_router_learning.urls)),
 ]

@@ -9,13 +9,13 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tanulosch_app', '0001_initial'),
+        ('learning_app', '0001_initial'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='learningroom',
             name='floor',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='learning_rooms', to='tanulosch_app.Floor'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='learning_rooms', to='learning_app.Floor'),
         ),
     ]

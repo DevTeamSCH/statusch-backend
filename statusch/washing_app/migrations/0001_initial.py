@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('status_code', models.IntegerField(blank=True, null=True)),
                 ('last_query_time', models.DateTimeField(blank=True, null=True)),
                 ('message', models.CharField(blank=True, max_length=255, null=True)),
-                ('floor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='machines', to='mosogepsch_app.Floor')),
+                ('floor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='machines', to='washing_app.Floor')),
             ],
         ),
     ]
