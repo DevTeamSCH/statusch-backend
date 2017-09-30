@@ -1,0 +1,3 @@
+-r base.in
+
+gunicorn==19.7.1
