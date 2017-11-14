@@ -72,7 +72,7 @@ class Listener(object):
         floor_obj, created = Floor.objects.get_or_create(id=floor_id)
         if created:
             floor_obj.save()
-        machine_obj, created = models.Machine.objects.get_or_create(type=machine, floor_id=floor_id)
+        machine_obj, created = models.Machine.objects.get_or_create(kind_of=machine, floor=floor_id)
         machine_obj.status_code = status
         # p = models.Floor(id=1, ip_addr='192.168.10.104', last_query_time='1992-08-15 10:55')
         machine_obj.save()
@@ -98,16 +98,19 @@ class Listener(object):
                 data, (address, port) = sock.recvfrom(68)
                 floor_num = address.split('.')[-1] # last octett of IP is the level number
                 drier_power, wm_power = unpack('>HH', data[4:8])
+                
+                print('Floor update: ' + floor_num)
 
                 floor = floors[int(floor_num)]
                 wm = floor.wm
                 drier = floor.drier
                 for machine, power, type_id in [(wm, wm_power, 'WM'), (drier, drier_power, 'DR')]:
+                    print('type_id: ' + type_id)
                     old_avg = machine.avg()
                     machine.add(power)
                     status = self._check_threshold(old_avg, machine.avg())
-                    if status is not None:
-                        self._update_db(floor_num, type_id, status)
+                    #if status is not None:
+                    self._update_db(floor_num, type_id, status)
             except socket.timeout:
                 print('Timeout...')
 
