@@ -4,3 +4,5 @@ venv/
 __pycache__/
 *.pyc
 lock
+moso.py
+sender.py
