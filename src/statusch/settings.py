@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'django_celery_results',
-    'django_celery_beat',
     'common',
     'study_room',
     'laundry_room',
