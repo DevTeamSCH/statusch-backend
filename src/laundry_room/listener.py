@@ -101,9 +101,6 @@ class Listener(object):
         sock.bind(('', 1234))
 
         while not self._stop_flag:
-            send_event('test', 'message', {'text': 'status'})
-            print('sending event...')
-
             try:
                 data, (address, port) = sock.recvfrom(68)
                 floor_num = address.split('.')[-1] # last octett of IP is the level number
@@ -116,6 +113,7 @@ class Listener(object):
                     old_avg = machine.avg()
                     machine.add(power)
                     status = self._check_threshold(old_avg, machine.avg())
+
                     if status is not None:
                         self._update_db(floor_num, type_id, status)
 
