@@ -59,7 +59,6 @@ class Listener(object):
         self._stop_flag = False
         self._thread = Thread(target=self._thread_listener_loop)
         self._thread.daemon = True
-        self._init_db()
 
     def _init_db(self):
         import itertools
