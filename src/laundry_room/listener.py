@@ -68,14 +68,21 @@ class Listener(object):
     def _update_db(self, floor_id, machine, status):
         from laundry_room import models
         from common.models import Floor
+        from django.utils import timezone
 
         floor_obj, created = Floor.objects.get_or_create(id=floor_id)
         if created:
             floor_obj.save()
         machine_obj, created = models.Machine.objects.get_or_create(kind_of=machine, floor=floor_obj)
-        machine_obj.status = status
-        # p = models.Floor(id=1, ip_addr='192.168.10.104', last_query_time='1992-08-15 10:55')
-        machine_obj.save()
+
+        if machine_obj.status is not status:
+            send_event('update_machine', 'machine updated', {'id': machine_obj.id, 'status': status})
+
+            floor_obj.last_query_time = timezone.now()
+            floor_obj.save()
+
+            machine_obj.status = status
+            machine_obj.save()
 
     def _check_threshold(self, old_avg, avg):
         if avg < _POWER_THRESHOLD and old_avg >= _POWER_THRESHOLD:
