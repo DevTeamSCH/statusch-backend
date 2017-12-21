@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'django_eventstream',
     'common',
     'study_room',
     'laundry_room',
@@ -54,18 +53,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-# GRIP_URL = 'http://127.0.0.1:5561'
-from base64 import b64decode
-REALM_ID = os.getenv('REALM_ID')
-REALM_KEY = os.getenv('REALM_KEY')
-GRIP_PROXIES = [{
-    'control_uri': 'http://api.fanout.io/realm/{}'.format(REALM_ID),
-    'control_iss': REALM_ID,
-    'key': b64decode(REALM_KEY),
-}]
-
-EVENTSTREAM_STORAGE_CLASS = 'django_eventstream.storage.DjangoModelStorage'
 
 ROOT_URLCONF = 'statusch.urls'
 

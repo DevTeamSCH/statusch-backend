@@ -3,7 +3,6 @@ from struct import unpack
 from threading import Thread
 from collections import namedtuple
 from time import monotonic
-from django_eventstream import send_event
 
 _HISTORY_LEN_SEC = 5
 _POWER_THRESHOLD = 200
@@ -76,8 +75,6 @@ class Listener(object):
         machine_obj, created = models.Machine.objects.get_or_create(kind_of=machine, floor=floor_obj)
 
         if machine_obj.status is not status:
-            send_event('update_machine', 'machine updated', {'id': machine_obj.id, 'status': status})
-
             floor_obj.last_query_time = timezone.now()
             floor_obj.save()
 
