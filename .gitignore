@@ -6,3 +6,5 @@ __pycache__/
 lock
 moso.py
 sender.py
+.directory
+.idea
