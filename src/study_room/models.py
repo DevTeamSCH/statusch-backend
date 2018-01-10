@@ -5,7 +5,7 @@ from common.models import Floor
 class StudyRoom(models.Model):
     STATUS_CHOICES = (
         (0, "Free"),
-        (1, "Busy"),
+        (1, "Taken"),
         (2, "N/A"),
     )
 
