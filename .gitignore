@@ -1,5 +1,12 @@
 env
 venv/
+.venv/
 *.sqlite3
 __pycache__/
 *.pyc
+lock
+moso.py
+sender.py
+.directory
+.idea
+.env
