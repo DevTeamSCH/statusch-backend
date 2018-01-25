@@ -1,5 +1,6 @@
 env
 venv/
+.venv/
 *.sqlite3
 __pycache__/
 *.pyc
@@ -8,3 +9,4 @@ moso.py
 sender.py
 .directory
 .idea
+.env

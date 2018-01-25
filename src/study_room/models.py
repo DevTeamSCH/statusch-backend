@@ -11,7 +11,7 @@ class StudyRoom(models.Model):
 
     name = models.CharField(max_length=255)
     status = models.IntegerField(blank=True, choices=STATUS_CHOICES, null=True)
-    floor = models.ForeignKey(Floor, related_name="study_rooms")
+    floor = models.ForeignKey(Floor, related_name="study_rooms", on_delete=models.CASCADE)
 
     def __str__(self):
         return "{}: {} - {}".format(self.floor, self.name, self.status)
