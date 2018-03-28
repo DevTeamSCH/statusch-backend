@@ -8,6 +8,7 @@ _HISTORY_LEN_SEC = 5
 _POWER_THRESHOLD = 200
 _N_FLOORS = 19
 
+
 class _Default(object):
     def __repr__(self):
         return '(' + ', '.join(
@@ -100,7 +101,7 @@ class Listener(object):
         while not self._stop_flag:
             try:
                 data, (address, port) = sock.recvfrom(68)
-                floor_num = address.split('.')[-1] # last octett of IP is the level number
+                floor_num = address.split('.')[-1]  # last octett of IP is the level number
                 drier_power, wm_power = unpack('>HH', data[4:8])
 
                 floor = floors[int(floor_num)]
