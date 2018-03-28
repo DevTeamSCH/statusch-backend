@@ -1,5 +1,7 @@
 import os
-from local import *
+from .local import *
+
+ALLOWED_HOSTS = ["*"]
 
 DEBUG = False
 
@@ -13,3 +15,14 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT'),
     }
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    )
+}
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')

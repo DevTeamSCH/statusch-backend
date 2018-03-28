@@ -10,3 +10,4 @@ sender.py
 .directory
 .idea
 .env
+.ropeproject/
