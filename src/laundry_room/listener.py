@@ -73,12 +73,12 @@ class Listener(object):
         floor_obj, created = Floor.objects.get_or_create(id=floor_id)
         if created:
             floor_obj.save()
+
+        floor_obj.last_query_time = timezone.now()
+        floor_obj.save()
+
         machine_obj, created = models.Machine.objects.get_or_create(kind_of=machine, floor=floor_obj)
-
         if machine_obj.status is not status:
-            floor_obj.last_query_time = timezone.now()
-            floor_obj.save()
-
             machine_obj.status = status
             machine_obj.save()
 
