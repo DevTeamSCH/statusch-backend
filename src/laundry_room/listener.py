@@ -77,10 +77,11 @@ class Listener(object):
         floor_obj.last_query_time = timezone.now()
         floor_obj.save()
 
-        machine_obj, created = models.Machine.objects.get_or_create(kind_of=machine, floor=floor_obj)
-        if machine_obj.status is not status:
-            machine_obj.status = status
-            machine_obj.save()
+        if status is not None:
+            machine_obj, created = models.Machine.objects.get_or_create(kind_of=machine, floor=floor_obj)
+            if machine_obj.status is not status:
+                machine_obj.status = status
+                machine_obj.save()
 
     def _check_threshold(self, old_avg, avg):
         if avg < _POWER_THRESHOLD and old_avg >= _POWER_THRESHOLD:
@@ -111,9 +112,7 @@ class Listener(object):
                     old_avg = machine.avg()
                     machine.add(power)
                     status = self._check_threshold(old_avg, machine.avg())
-
-                    if status is not None:
-                        self._update_db(floor_num, type_id, status)
+                    self._update_db(floor_num, type_id, status)
 
             except socket.timeout:
                 print('Timeout...')
