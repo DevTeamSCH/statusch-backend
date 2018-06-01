@@ -1,9 +1,11 @@
-from django.conf.urls import url, include
+from django.urls import path
+from django.conf.urls import include
 from django.contrib import admin
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^api/v1/laundry-room/', include('laundry_room.urls')),
-    url(r'^api/v1/study-room/', include('study_room.urls')),
+    path('admin/', admin.site.urls),
+    path('api/v1/', include('laundry_room.urls')),
+    path('api/v1/', include('study_room.urls')),
+    path('api/v1/', include('printer.urls')),
 ]

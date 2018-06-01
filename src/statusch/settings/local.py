@@ -38,9 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'solo',
     'common',
     'study_room',
     'laundry_room',
+    'printer',
 ]
 
 MIDDLEWARE = [

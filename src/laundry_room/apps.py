@@ -3,6 +3,7 @@ import atexit
 from django.apps import AppConfig
 from laundry_room.listener import Listener
 
+
 class LaundryRoomConfig(AppConfig):
     name = 'laundry_room'
 
