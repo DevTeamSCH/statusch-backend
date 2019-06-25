@@ -4,7 +4,7 @@ from .apps import LaundryRoomConfig
 from . import views
 
 router = DefaultRouter()
-router.register(r'laundry-room', views.FloorViewSet)
+router.register(r"laundry-room", views.FloorViewSet)
 
 app_name = LaundryRoomConfig.name
 urlpatterns = router.urls

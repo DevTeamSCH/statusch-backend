@@ -10,18 +10,31 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('common', '0001_initial'),
-    ]
+    dependencies = [("common", "0001_initial")]
 
     operations = [
         migrations.CreateModel(
-            name='StudyRoom',
+            name="StudyRoom",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255)),
-                ('status', models.BooleanField()),
-                ('floor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='study_rooms', to='common.Floor')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255)),
+                ("status", models.BooleanField()),
+                (
+                    "floor",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="study_rooms",
+                        to="common.Floor",
+                    ),
+                ),
             ],
-        ),
+        )
     ]

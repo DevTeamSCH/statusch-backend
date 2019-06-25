@@ -6,19 +6,23 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('study_room', '0002_auto_20171228_1350'),
-    ]
+    dependencies = [("study_room", "0002_auto_20171228_1350")]
 
     operations = [
         migrations.AlterField(
-            model_name='studyroom',
-            name='floor',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='study_rooms', to='common.Floor'),
+            model_name="studyroom",
+            name="floor",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="study_rooms",
+                to="common.Floor",
+            ),
         ),
         migrations.AlterField(
-            model_name='studyroom',
-            name='status',
-            field=models.IntegerField(blank=True, choices=[(0, 'Free'), (1, 'Taken'), (2, 'N/A')], null=True),
+            model_name="studyroom",
+            name="status",
+            field=models.IntegerField(
+                blank=True, choices=[(0, "Free"), (1, "Taken"), (2, "N/A")], null=True
+            ),
         ),
     ]

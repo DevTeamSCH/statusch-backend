@@ -10,19 +10,45 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('common', '0001_initial'),
-    ]
+    dependencies = [("common", "0001_initial")]
 
     operations = [
         migrations.CreateModel(
-            name='Machine',
+            name="Machine",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type', models.CharField(choices=[('WM', 'WashingMachine'), ('DR', 'Dryer')], max_length=2)),
-                ('status', models.IntegerField(blank=True, choices=[(0, 'Free'), (1, 'Busy'), (2, 'N/A')], null=True)),
-                ('message', models.CharField(blank=True, max_length=255, null=True)),
-                ('floor', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='machines', to='common.Floor')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[("WM", "WashingMachine"), ("DR", "Dryer")],
+                        max_length=2,
+                    ),
+                ),
+                (
+                    "status",
+                    models.IntegerField(
+                        blank=True,
+                        choices=[(0, "Free"), (1, "Busy"), (2, "N/A")],
+                        null=True,
+                    ),
+                ),
+                ("message", models.CharField(blank=True, max_length=255, null=True)),
+                (
+                    "floor",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        related_name="machines",
+                        to="common.Floor",
+                    ),
+                ),
             ],
-        ),
+        )
     ]

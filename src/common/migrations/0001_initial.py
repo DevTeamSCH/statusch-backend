@@ -9,16 +9,18 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Floor',
+            name="Floor",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False, unique=True)),
-                ('ip_addr', models.CharField(max_length=255)),
-                ('last_query_time', models.DateTimeField(blank=True, null=True)),
+                (
+                    "id",
+                    models.IntegerField(primary_key=True, serialize=False, unique=True),
+                ),
+                ("ip_addr", models.CharField(max_length=255)),
+                ("last_query_time", models.DateTimeField(blank=True, null=True)),
             ],
-        ),
+        )
     ]

@@ -5,15 +5,15 @@ from laundry_room.listener import Listener
 
 
 class LaundryRoomConfig(AppConfig):
-    name = 'laundry_room'
+    name = "laundry_room"
 
     def __init__(self, app_name, app_module):
         AppConfig.__init__(self, app_name, app_module)
         self._lock_file = None
 
     def ready(self):
-        print('New app process')
-        self._lock_file = open('./lock', 'w')
+        print("New app process")
+        self._lock_file = open("./lock", "w")
         try:
             fcntl.flock(self._lock_file, fcntl.LOCK_EX | fcntl.LOCK_NB)
             listener = Listener()

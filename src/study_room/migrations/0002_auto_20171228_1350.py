@@ -6,14 +6,16 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('study_room', '0001_initial'),
-    ]
+    dependencies = [("study_room", "0001_initial")]
 
     operations = [
         migrations.AlterField(
-            model_name='studyroom',
-            name='floor',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, related_name='study_rooms', to='common.Floor'),
-        ),
+            model_name="studyroom",
+            name="floor",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                related_name="study_rooms",
+                to="common.Floor",
+            ),
+        )
     ]
