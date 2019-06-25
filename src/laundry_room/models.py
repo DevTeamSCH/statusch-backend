@@ -21,6 +21,7 @@ class Machine(models.Model):
     type = models.ForeignKey(
         Type, related_name="machines", on_delete=models.DO_NOTHING
     )
+    working = models.BooleanField(default=True)
 
     def __str__(self):
         return "{} {}".format(self.floor, self.type)
