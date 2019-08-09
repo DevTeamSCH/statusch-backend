@@ -7,7 +7,7 @@ class Type(models.Model):
 
     kind_of = models.CharField(max_length=2, choices=TYPE_CHOICES)
     name = models.CharField(max_length = 125)
-    treshhold = models.IntegerField()
+    treshold = models.IntegerField()
 
 
 class Machine(models.Model):

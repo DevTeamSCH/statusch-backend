@@ -3,10 +3,17 @@ from . import models
 from common.models import Floor
 
 
+class TypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Type
+        fields = ("kind_of","name","treshold")
+
 class MachineSerializer(serializers.ModelSerializer):
+    type_field = TypeSerializer()
+
     class Meta:
         model = models.Machine
-        fields = ("id", "kind_of", "status", "message")
+        fields = ("id", "status", "message","working","type_field")
 
 
 class FloorSerializer(serializers.ModelSerializer):

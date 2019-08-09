@@ -1,3 +1,11 @@
+from django.apps import AppConfig
+
+
+class LaundryRoomConfig(AppConfig):
+    name = "laundry_room"
+
+
+'''
 import fcntl
 import atexit
 from django.apps import AppConfig
@@ -21,3 +29,4 @@ class LaundryRoomConfig(AppConfig):
             atexit.register(listener.stop)
         except BlockingIOError:
             pass
+'''
