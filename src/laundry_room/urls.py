@@ -5,6 +5,7 @@ from . import views
 
 router = DefaultRouter()
 router.register(r'laundry-room', views.FloorViewSet)
+router.register(r'alerts', views.AlertViewSet)
 
 app_name = LaundryRoomConfig.name
 urlpatterns = router.urls
