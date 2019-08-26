@@ -5,7 +5,7 @@ from collections import namedtuple
 from time import monotonic
 
 _HISTORY_LEN_SEC = 5
-_POWER_THRESHOLD = 200
+_POWER_THRESHOLD = 20
 _N_FLOORS = 19
 _SAVE_VALUE = True
 
@@ -99,11 +99,11 @@ class Listener(object):
                 machine_obj.status = status
                 machine_obj.save()
 
-    def _check_threshold(self, old_avg, avg):
-        if avg < _POWER_THRESHOLD and old_avg >= _POWER_THRESHOLD:
+    def _check_threshold(self, old_avg, avg, threshold):
+        if avg < threshold and old_avg >= threshold:
             # print(msg.format('off'))
             return 0  # off
-        elif avg >= _POWER_THRESHOLD and old_avg < _POWER_THRESHOLD:
+        elif avg >= threshold and old_avg < threshold:
             # print(msg.format('on'))
             return 1  # on
         return None
@@ -125,6 +125,8 @@ class Listener(object):
             models.Value.objects.create(machine=machine_obj, value=power)
 
     def _thread_listener_loop(self):
+        from .models import Machine
+
         floors = [_Floor() for _ in range(_N_FLOORS)]
 
         sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -142,13 +144,18 @@ class Listener(object):
                 floor = floors[int(floor_num)]
                 wm = floor.wm
                 drier = floor.drier
-                for machine, power, type_id in [
-                    (wm, wm_power, "WM"),
-                    (drier, drier_power, "DR"),
+                data_wm = Machine.objects.filter(type__kindof = 'WM', floor__ip_addr = address)
+                data_dr = Machine.objects.filter(type__kindof = 'DR' , floor__ip_addr = address)
+                wm_threshold = data_wm.threshold
+                dr_threshold = data_dr.threshold
+
+                for machine, power, type_id, threshold in [
+                    (wm, wm_power, "WM",wm_threshold),
+                    (drier, drier_power, "DR",dr_threshold),
                 ]:
                     old_avg = machine.avg()
                     machine.add(power)
-                    status = self._check_threshold(old_avg, machine.avg())
+                    status = self._check_threshold(old_avg, machine.avg(), threshold)
                     self._update_db(floor_num, type_id, status)
                     if _SAVE_VALUE is True:
                         self._add_value(floor_num, type_id, power)
