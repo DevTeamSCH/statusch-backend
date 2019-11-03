@@ -6,4 +6,4 @@ from . import serializers
 
 class FloorViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = serializers.FloorSerializer
-    queryset = Floor.objects.exclude(machines__isnull=True).order_by("id", "machines__kind_of")
+    queryset = Floor.objects.exclude(machines__isnull=True).order_by("id")
