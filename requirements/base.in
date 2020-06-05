@@ -1,4 +1,4 @@
-Django==2.0.12
+Django==2.2.13
 djangorestframework==3.9.1
 requests==2.20.0
 django-solo==1.1.3
